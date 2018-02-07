@@ -27,50 +27,48 @@ The _Format object_ method is similar to the _Format string_ method. It evaluate
 The Javascript implementation of Mustache being used is https://github.com/janl/mustache.js.
 
 
-TODODOODODODODODODODO
-
 #### Example
 In the examples the Flow is going to be attached to an API that has three parameters, firstname, lastname and gender.
 
-##### Basic interpolation {{= }}
+##### Basic interpolation {{ }}
 The template can be used to quickly concatenate values.
 
 | | |
 | - | - |
 | Request | <http://localhost:8080/api/example?firstname=Clark&lastname=Kent&gender=m> |
-| _data_ | $ |
-| _template_ | {{=it.params.firstname}} {{=it.params.lastname}} |
+| _data_ | $.params |
+| _template_ | {{firstname}} {{lastname}} |
 | Output | Clark Kent |
 
 
-##### Conditionals {{? }}
-The template evaluation supports conditional logic to tailor the output based on the input.
+##### Conditionals {{^value}}{{/value}}
+The template evaluation supports boolean checkes to tailor the output based on the input.
 
 | | |
 | - | - |
-| Request | <http://localhost:8080/api/example?firstname=Clark&lastname=Kent&gender=m> |
+| Request | <http://localhost:8080/api/example?firstname=Clark&lastname=Kent&male=true> |
 | _data_ | $ |
-| _template_ | Hello {{? it.gender=="m"}}Mr {{?}}{{? it.gender=="f"}}Ms {{?}}{{= it.surname}} |
+| _template_ | Hello {{#male}}Mr{{/male}}{{^male}}Ms{{/male}} {{surname}} |
 | Output | Hello Mr Kent |
 
 | | |
 | - | - |
-| Request | <http://localhost:8080/api/example?firstname=Lois&lastname=Lane&gender=f> |
-| _data_ | $ |
-| _template_ | Hello {{? it.gender=="m"}}Mr {{?}}{{? it.gender=="f"}}Ms {{?}}{{= it.surname}} |
+| Request | <http://localhost:8080/api/example?firstname=Lois&lastname=Lane> |
+| _data_ | $.params |
+| _template_ | Hello {{#male}}Mr{{/male}}{{^male}}Ms{{/male}} {{surname}} |
 | Output | Hello Ms Lane |
 
 
-##### Array Iteration {{~ }}
+##### Array Iteration {{# }}
 The template engine can also iterate over arrays, creating content for each element in the array.
 
 
 | | |
 | - | - |
 | Request | <http://localhost:8080/api/example?names=Tom,Dick,Harry> |
-| _data_ | $ |
-| _template_ | {{~it.params.names :value:index}}{{=index}}={{=value}};{{~}} |
-| Output | 0=Tom;1=Dick;2=Harry; |
+| _data_ | $.params |
+| _template_ | {{#names}}{{.}} {{/names}} |
+| Output | Tom Dick Harry  |
 
 
 ## Getting started
@@ -85,7 +83,7 @@ After creating your API Builder project (`appc new -t arrow`), you can install t
 using npm:
 
 ```
-npm install --save nodehandler-dot
+npm install --save nodehandler-gm-mustache
 ```
 
-The "Compose" flow-node will then be available in the tools panel when creating or editing Flows.
+The "Mustache" flow-node will then be available in the tools panel when creating or editing Flows.
