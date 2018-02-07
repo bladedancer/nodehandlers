@@ -2,10 +2,10 @@
 
 ## About
 
-This module installs the [Mustache](http://mustache.github.io) flow-node to be used within [Axway API Builder's](https://www.axway.com/en/datasheet/axway-api-builder)
+This module installs the [EJS](http://ejs.co/) flow-node to be used within [Axway API Builder's](https://www.axway.com/en/datasheet/axway-api-builder)
 flow editor.
 
-The Mustache flow-node allows the evaluation of [Mustache](http://mustache.github.io) templates using values from the flow.
+The EJS flow-node allows the evaluation of [EJS](http://ejs.co/) templates using values from the flow.
 
 ### Format string
 The _Format string_ method evaluates the template given with the data supplied. This allows complex values to be constructed from values that exist in the flow's context.
@@ -23,51 +23,51 @@ The _Format object_ method is similar to the _Format string_ method. It evaluate
 | data | object | y | The data to evaluate the template with. Use $ to access the entire context. |
 | template | string | y | The doT template being evaluated. |
 
-### Mustache Templates
-The Javascript implementation of Mustache being used is https://github.com/janl/mustache.js.
+### EJS Templates
+For details on the EJS templates see http://ejs.co/.
 
 
 #### Example
 In the examples the Flow is going to be attached to an API that has three parameters, firstname, lastname and gender.
 
-##### Basic interpolation {{ }}
+##### Basic interpolation <%= %>
 The template can be used to quickly concatenate values.
 
 | | |
 | - | - |
 | Request | <http://localhost:8080/api/example?firstname=Clark&lastname=Kent&gender=m> |
 | _data_ | $.params |
-| _template_ | {{firstname}} {{lastname}} |
+| _template_ | <%=firstname%> <%=lastname%> |
 | Output | Clark Kent |
 
 
-##### Conditionals {{^value}}{{/value}}
-The template evaluation supports boolean checkes to tailor the output based on the input.
+##### Conditionals <% condition %>
+The template evaluation is plain javascript so you can have any conditional you like here. For this example it is a ternary operator. 
 
 | | |
 | - | - |
 | Request | <http://localhost:8080/api/example?firstname=Clark&lastname=Kent&male=true> |
 | _data_ | $ |
-| _template_ | Hello {{#male}}Mr{{/male}}{{^male}}Ms{{/male}} {{surname}} |
+| _template_ | Hello <%= male ? 'Mr' : 'Ms'%> <%=surname%> |
 | Output | Hello Mr Kent |
 
 | | |
 | - | - |
 | Request | <http://localhost:8080/api/example?firstname=Lois&lastname=Lane> |
 | _data_ | $.params |
-| _template_ | Hello {{#male}}Mr{{/male}}{{^male}}Ms{{/male}} {{surname}} |
+| _template_ | Hello <%= male ? 'Mr' : 'Ms'%> <%=surname%> |
 | Output | Hello Ms Lane |
 
 
-##### Array Iteration {{# }}
-The template engine can also iterate over arrays, creating content for each element in the array.
+##### Array Iteration <%= array funcs. %>
+Again as the template is javascript you can iterate over the array however you like.
 
 
 | | |
 | - | - |
 | Request | <http://localhost:8080/api/example?names=Tom,Dick,Harry> |
 | _data_ | $.params |
-| _template_ | {{#names}}{{.}} {{/names}} |
+| _template_ | <%=names.join(' ');%> |
 | Output | Tom Dick Harry  |
 
 
@@ -83,7 +83,7 @@ After creating your API Builder project (`appc new -t arrow`), you can install t
 using npm:
 
 ```
-npm install --save nodehandler-gm-mustache
+npm install --save nodehandler-gm-ejs
 ```
 
-The "Mustache" flow-node will then be available in the tools panel when creating or editing Flows.
+The "EJS" flow-node will then be available in the tools panel when creating or editing Flows.
