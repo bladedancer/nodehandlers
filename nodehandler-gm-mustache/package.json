@@ -2,18 +2,15 @@
   "name": "nodehandler-gm-mustache",
   "version": "1.0.0",
   "description": "Node for templating using mustache",
-  "main": "dist/index.js",
-  "author": "",
+  "main": "src/index.js",
+  "author": "Gavin Matthews",
   "license": "ISC",
   "files": [
-    "dist",
+    "src",
+    "README.md",
     "icon.svg"
   ],
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-preset-env": "^1.6.0",
     "chai": "^4.1.2",
     "cross-env": "^5.0.5",
     "eslint": "^4.11.0",
@@ -31,11 +28,9 @@
     "mustache": "^2.3.0"
   },
   "scripts": {
-    "build": "npm run build:dev",
-    "build:dev": "npm run build:lint && npm run test && npm run build:dist",
+    "build": "npm run build:lint && npm run test",
     "build:lint": "eslint .",
-    "build:dist": "babel -d ./dist ./src",
-    "test": "rimraf coverage .nyc-output && cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-summary node_modules/mocha/bin/mocha --require babel-register ./test --recursive -R spec",
-    "test:debug": "mocha --require babel-register --inspect --debug-brk"
+    "test": "rimraf coverage .nyc-output && cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-summary node_modules/mocha/bin/mocha ./test --recursive -R spec",
+    "test:debug": "mocha --inspect --debug-brk"
   }
 }

@@ -1,11 +1,11 @@
 const builder = require('../src');
 const expect = require('chai').expect;
-const { mocknode, validate } = require('axway-flow-sdk');
+const { mocknode } = require('axway-flow-sdk');
 
 describe('nodehandler-gm-mustache', () => {
 	describe('#constructor', () => {
 		it('[MUSTACHE-1] should define gm-mustache node specs', () => {
-			expect(builder).to.exist;;
+			expect(builder).to.exist;
 			expect(mocknode('gm-mustache')).to.exist;
 		});
 	});
@@ -47,7 +47,6 @@ describe('nodehandler-gm-mustache', () => {
 				});
 		});
 
-
 		it('[MUSTACHE-5] should format template with values from object array', () => {
 			const template = '{{#people}}{{name}},{{/people}}';
 			const data = {
@@ -65,7 +64,6 @@ describe('nodehandler-gm-mustache', () => {
 					});
 				});
 		});
-
 
 		it('[MUSTACHE-6] should error on format of invalid template', () => {
 			const template = '{{#people}}{{/animals}}';
@@ -101,7 +99,7 @@ describe('nodehandler-gm-mustache', () => {
 							name: 'Clark Kent',
 							age: 27,
 							gender: 'm'
-						}]
+						} ]
 					});
 				});
 		});
@@ -120,11 +118,11 @@ describe('nodehandler-gm-mustache', () => {
 			};
 
 			return mocknode(builder).node('gm-mustache').invoke('formatObj', { template, data })
-			.then((result) => {
-				expect(result).to.have.property('error');
-				expect(result.error[0]).to.be.null;
-				expect(result.error[1].message).to.be.equal('Unclosed section "male" at 81');
-			});
+				.then((result) => {
+					expect(result).to.have.property('error');
+					expect(result.error[0]).to.be.null;
+					expect(result.error[1].message).to.be.equal('Unclosed section "male" at 81');
+				});
 		});
 	});
 });
