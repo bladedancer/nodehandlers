@@ -79,7 +79,7 @@ describe('nodehandler-gm-mustache', () => {
 				});
 		});
 
-		it('[MUSTACHCE-7] should format object from template', () => {
+		it('[MUSTACHE-7] should format object from template', () => {
 			const template = `{
 				"name": "{{first}} {{last}}",
 				"age": {{age}},
@@ -104,7 +104,7 @@ describe('nodehandler-gm-mustache', () => {
 				});
 		});
 
-		it('[MUSTACHCE-8] should format object should trigger error if template is not valid', () => {
+		it('[MUSTACHE-8] should format object should trigger error if template is not valid', () => {
 			const template = `{
 				"name": "{{first}} {{last}}",
 				"age": {{age}},
