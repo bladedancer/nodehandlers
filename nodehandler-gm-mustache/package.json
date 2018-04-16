@@ -11,7 +11,6 @@
     "icon.svg"
   ],
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
     "chai": "^4.1.2",
     "cross-env": "^5.0.5",
     "eslint": "^4.11.0",
@@ -25,7 +24,7 @@
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "axway-flow-sdk": "^1.0.0",
+    "axway-flow-sdk": "v4-preview1",
     "mustache": "^2.3.0"
   },
   "scripts": {
