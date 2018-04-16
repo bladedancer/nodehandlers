@@ -1,6 +1,6 @@
 {
   "name": "nodehandler-gm-objectfilter",
-  "version": "4.0.0-0",
+  "version": "4.0.0-1",
   "description": "Node to filter object fields.",
   "main": "src/index.js",
   "author": "",

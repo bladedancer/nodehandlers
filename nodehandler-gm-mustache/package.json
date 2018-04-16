@@ -1,6 +1,6 @@
 {
   "name": "nodehandler-gm-mustache",
-  "version": "1.0.0",
+  "version": "4.0.0-1",
   "description": "Node for templating using mustache",
   "main": "src/index.js",
   "author": "Gavin Matthews",
